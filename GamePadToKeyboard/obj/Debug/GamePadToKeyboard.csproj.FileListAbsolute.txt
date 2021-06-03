@@ -1,0 +1,2 @@
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\GamePadToKeyboard\obj\Debug\GamePadToKeyboard.csprojAssemblyReference.cache
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\GamePadToKeyboard\obj\Debug\GamePadToKeyboard.csproj.CoreCompileInputs.cache
