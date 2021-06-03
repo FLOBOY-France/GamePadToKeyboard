@@ -1,2 +1,8 @@
 C:\Users\florian.boyer\source\repos\GamePadToKeyboard\GamePadToKeyboard\obj\Debug\GamePadToKeyboard.csprojAssemblyReference.cache
 C:\Users\florian.boyer\source\repos\GamePadToKeyboard\GamePadToKeyboard\obj\Debug\GamePadToKeyboard.csproj.CoreCompileInputs.cache
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\Release\GamePadToKeyboard.exe.config
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\Release\GamePadToKeyboard.exe
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\Release\GamePadToKeyboard.pdb
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\GamePadToKeyboard\obj\Debug\GamePadToKeyboard.csproj.CopyComplete
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\GamePadToKeyboard\obj\Debug\GamePadToKeyboard.exe
+C:\Users\florian.boyer\source\repos\GamePadToKeyboard\GamePadToKeyboard\obj\Debug\GamePadToKeyboard.pdb
