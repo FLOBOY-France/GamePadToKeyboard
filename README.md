@@ -9,8 +9,7 @@ C# avec le framework .Net 4.7
 ## Todo
 - Nettoyage du code 
 - ajouter la possibilité de paramètrer les touches.
-- Comprendre pourquoi la touche Return (0x0D) ne marche pas selon les applications : Par exemple, marche sur notepad, mais pas sur Visual Studio Code
-- J'ai ajouté le dossier de Release directement dans le code, mais il est peut-être plus judicieux de passer par le "vrai" système de release (à voir comment ça marche)
+- Comprendre pourquoi la touche Return (0x0D) ne marche pas selon les applications : Par exemple, marche sur notepad, mais pas sur Visual Studio Code : Semble corrigé par InputSimulator
 
 ## Dépendances
 - Utilise OpenTk pour la gestion de la manette https://github.com/opentk  et particulièrement GLControl.
