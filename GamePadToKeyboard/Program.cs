@@ -11,7 +11,8 @@ namespace GamePadToKeyboard
             ButtonState previousState = ButtonState.Released;
             DateTime dtLastPressed = DateTime.Now;
             int intervalleMS = int.Parse(ConfigurationManager.AppSettings["intervalleMS"]);
-
+            string AppVersion = ConfigurationManager.AppSettings["AppVersion"];
+            Console.WriteLine("_____________ GamePadToKeyboard v" + AppVersion + " _____________");
             Console.WriteLine("A : Activation, B : Clear, Back : Sortie de l'application");
             Console.WriteLine("Intervalle fixé à " + intervalleMS);
 
