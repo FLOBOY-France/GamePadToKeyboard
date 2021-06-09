@@ -15,44 +15,54 @@ namespace GamePadToKeyboard
             Console.WriteLine("A : Activation, B : Clear, Back : Sortie de l'application");
             Console.WriteLine("Intervalle fixé à " + intervalleMS);
 
+            int gamePadNumber = 0;
+            
+            for(int i=0; i<4; i++)
+            {
+              if (GamePad.GetState(i).IsConnected == true)
+                {
+                    gamePadNumber = i;
+                    Console.WriteLine("Numero de pad : " + i);
+                    break;
+                }
+            }
+
             while (true)
             {
-                GamePadState state = GamePad.GetState(0);
 
 
-                if (state.Buttons.A.Equals(ButtonState.Released) && previousState.Equals(ButtonState.Pressed))
-                {
-
-                    TimeSpan timeSpan = DateTime.Now - dtLastPressed;
-                    if (timeSpan.TotalMilliseconds > intervalleMS)
+                GamePadState state = GamePad.GetState(gamePadNumber);
+                    if (state.Buttons.A.Equals(ButtonState.Released) && previousState.Equals(ButtonState.Pressed))
                     {
-                        dtLastPressed = DateTime.Now;
-                        KeyboardSender.SendReturn();
-                        Console.WriteLine("On a relâché A, écart : " + timeSpan.TotalMilliseconds);
 
+                        TimeSpan timeSpan = DateTime.Now - dtLastPressed;
+                        if (timeSpan.TotalMilliseconds > intervalleMS)
+                        {
+                            dtLastPressed = DateTime.Now;
+                            KeyboardSender.SendReturn();
+                            //KeyboardSender.SendKey(0x0D);
+                            Console.WriteLine("On a relâché A, écart : " + timeSpan.TotalMilliseconds);
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Non accepté : " + timeSpan.TotalMilliseconds + " < " + intervalleMS);
+                        }
                     }
-                    else
+
+                    else if (state.Buttons.B.Equals(ButtonState.Pressed))
+                        Console.Clear();
+                    else if (state.Buttons.Back.Equals(ButtonState.Pressed))
                     {
-                        Console.WriteLine("Non accepté : " + timeSpan.TotalMilliseconds + " < " + intervalleMS);
+                        Console.WriteLine("Êtes-vous sûr de vouloir sortir ? o/N");
+                        string rep = Console.ReadLine();
+                        if (rep.ToUpper().Equals("O"))
+                            break;
                     }
+
+                    previousState = state.Buttons.A;
                 }
-
-                else if (state.Buttons.B.Equals(ButtonState.Pressed))
-                    Console.Clear();
-                else if (state.Buttons.Back.Equals(ButtonState.Pressed))
-                {
-                    Console.WriteLine("Êtes-vous sûr de vouloir sortir ? o/N");
-                    string rep = Console.ReadLine();
-                    if (rep.ToUpper().Equals("O"))
-                        break;
-                }
-
-                previousState = state.Buttons.A;
-
-
-            }
         }
-
     }
 }
 
