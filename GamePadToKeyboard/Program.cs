@@ -12,10 +12,10 @@ namespace GamePadToKeyboard
             DateTime dtLastPressed = DateTime.Now;
             int intervalleMS = int.Parse(ConfigurationManager.AppSettings["intervalleMS"]);
             string AppVersion = ConfigurationManager.AppSettings["AppVersion"];
-            Console.WriteLine("_____________ GamePadToKeyboard v" + AppVersion + " _____________");
-            Console.WriteLine("A : Activation, B : Clear, Back : Sortie de l'application");
-            Console.WriteLine("Intervalle fixé à " + intervalleMS);
-
+            
+            Console.WriteLine( (" ___ GamePadToKeyboard v" + AppVersion).PadRight(100, '_'));
+            Console.WriteLine("| A : Activation, B : Clear, Back : Sortie de l'application".PadRight(100) + "|");
+            Console.WriteLine(("| Intervalle fixé à " + intervalleMS).PadRight(100) + "|");
             int gamePadNumber = 0;
             
             for(int i=0; i<4; i++)
@@ -23,10 +23,11 @@ namespace GamePadToKeyboard
               if (GamePad.GetState(i).IsConnected == true)
                 {
                     gamePadNumber = i;
-                    Console.WriteLine("Numero de pad : " + i);
+                    Console.WriteLine( ("| Numero de pad : " + i).PadRight(100) + "|");
                     break;
                 }
             }
+            Console.WriteLine("|_".PadRight(100, '_') + "|");
 
             while (true)
             {
