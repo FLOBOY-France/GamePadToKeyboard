@@ -8,13 +8,14 @@ namespace GamePadToKeyboard
     {
         static void Main(string[] args)
         {
-            ButtonState previousState = ButtonState.Released;
+            //ButtonState previousState = ButtonState.Released;
+            bool previousStatePressed = false;
             DateTime dtLastPressed = DateTime.Now;
             int intervalleMS = int.Parse(ConfigurationManager.AppSettings["intervalleMS"]);
             string AppVersion = ConfigurationManager.AppSettings["AppVersion"];
             
             Console.WriteLine( (" ___ GamePadToKeyboard v" + AppVersion).PadRight(100, '_'));
-            Console.WriteLine("| A : Activation, B : Clear, Back : Sortie de l'application".PadRight(100) + "|");
+            //Console.WriteLine("| A : Activation, B : Clear, Back : Sortie de l'application".PadRight(100) + "|");
             Console.WriteLine(("| Intervalle fixé à " + intervalleMS).PadRight(100) + "|");
             int gamePadNumber = 0;
             
@@ -34,7 +35,8 @@ namespace GamePadToKeyboard
 
 
                 GamePadState state = GamePad.GetState(gamePadNumber);
-                    if (state.Buttons.A.Equals(ButtonState.Released) && previousState.Equals(ButtonState.Pressed))
+                //    if (state.Buttons.A.Equals(ButtonState.Released) && previousState.Equals(ButtonState.Pressed))
+                if (!state.Buttons.IsAnyButtonPressed && previousStatePressed)
                     {
 
                         TimeSpan timeSpan = DateTime.Now - dtLastPressed;
@@ -43,7 +45,7 @@ namespace GamePadToKeyboard
                             dtLastPressed = DateTime.Now;
                             KeyboardSender.SendReturn();
                             //KeyboardSender.SendKey(0x0D);
-                            Console.WriteLine("On a relâché A, écart : " + timeSpan.TotalMilliseconds);
+                            Console.WriteLine("On a relâché un bouton, écart : " + timeSpan.TotalMilliseconds);
 
                         }
                         else
@@ -51,19 +53,19 @@ namespace GamePadToKeyboard
                             Console.WriteLine("Non accepté : " + timeSpan.TotalMilliseconds + " < " + intervalleMS);
                         }
                     }
+                previousStatePressed = state.Buttons.IsAnyButtonPressed;
+                    //else if (state.Buttons.B.Equals(ButtonState.Pressed))
+                    //   Console.Clear();
+                /*else if (state.Buttons.Back.Equals(ButtonState.Pressed))
+                {
+                    Console.WriteLine("Êtes-vous sûr de vouloir sortir ? o/N");
+                    string rep = Console.ReadLine();
+                    if (rep.ToUpper().Equals("O"))
+                        break;
+                }*/
 
-                    else if (state.Buttons.B.Equals(ButtonState.Pressed))
-                        Console.Clear();
-                    else if (state.Buttons.Back.Equals(ButtonState.Pressed))
-                    {
-                        Console.WriteLine("Êtes-vous sûr de vouloir sortir ? o/N");
-                        string rep = Console.ReadLine();
-                        if (rep.ToUpper().Equals("O"))
-                            break;
-                    }
-
-                    previousState = state.Buttons.A;
-                }
+                //previousState = state.Buttons.A;
+            }
         }
     }
 }
